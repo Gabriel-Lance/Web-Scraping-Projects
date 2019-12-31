@@ -6,10 +6,8 @@ and repeating this for each new page you visit, you are almost guaranteed to eve
 This program asks the user for the title of a Wikipedia article and follows this path of links automatically.
 """
 
-import requests, os, pickle
+import requests
 from bs4 import BeautifulSoup as bs
-
-pickle_path = "longest_philosophy_chain.pickle.p"
 
 while True:
     start = input("What page will you start on? ")
@@ -43,8 +41,8 @@ while True:
 
                     anchors = p.select("a")  # Gets a list of links in the current paragraph
 
-                    # Finds the first link that isn't in parentheses by checking if all text before the link has the same
-                    # number of opening and closing parentheses
+                    # Finds the first link that isn't in parentheses by checking if all text before the link has the
+                    # same number of opening and closing parentheses
                     for a in anchors:
                         link = a.get("href")
                         before_link = str(p).split(link)[0]

@@ -1,8 +1,12 @@
+"""A web scraper that gets every quote, author, and group of tags from quotes.toscrape.com/tableful and saves the
+data to an Excel workbook. The HTML of this webpage is formatted in a strange way, where the page is a table and each
+cell of the table alternates between containing a quote and its author and containing a quote's list of tags.  This
+makes it difficult to scrape."""
+
 import requests
 from bs4 import BeautifulSoup as bs
 import re
 from openpyxl import Workbook
-from time import sleep
 
 # Creates a workbook to save the data
 wb = Workbook()

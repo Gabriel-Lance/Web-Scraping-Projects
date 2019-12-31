@@ -1,8 +1,14 @@
+"""A web scraper that scrapes a list of quotes, along with each quote's author and list of tags, from
+quotes.toscrape.com/js.  The HTML on this page is initially empty and is populated by JavaScript, which means that
+it cannot be scraped using Requests and BeautifulSoup, as those libraries don't execute JavaScript.  Thus, this
+scraper uses Selenium to control Chrome, which will execute the required JavaScript.
+
+To run this code, you need to have an appropriate version of the Chrome webdriver in the same directory as this file."""
+
 from openpyxl import Workbook
 from selenium import webdriver
 
-
-# Creates an Excel spreadsheet
+# Creates an Excel workbook to save the data
 wb = Workbook()
 ws = wb.active
 ws["A1"].value = "Quote"
@@ -32,5 +38,6 @@ while True:
     except:
         break
 
-wb.save("quote_scrape_3.xlsx")
+# Saves the workbook
+wb.save("quote_scrape_JS.xlsx")
 print("DONE!")

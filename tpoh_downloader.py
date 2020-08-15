@@ -18,7 +18,7 @@ if os.path.isfile(last_url_file_name):
         url = pickle.load(pfile)
 # If there is no file of the last URL visited, the program begins at the first page
 else:
-    url = "http://www.thepropertyofhate.com/TPoH/The%20Hook/1"
+    url = "http://jolleycomics.com/TPoH/The%20Hook/1"
 
 while True:
     # Downloads the web page
@@ -35,7 +35,7 @@ while True:
     # Downloads the image if it hasn't already been downloaded
     if not os.path.isfile(page_path):
         print(f"Downloading {title}")
-        img_url = "http://thepropertyofhate.com" + req_soup.select("div.comic_comic > img")[0]["src"]
+        img_url = "http://jolleycomics.com" + req_soup.select("div.comic_comic > img")[0]["src"]
         img_file = requests.get(img_url, headers={"User-agent": "Chrome"})
         img_file.raise_for_status()
         with open(page_path, "wb") as file:
@@ -50,7 +50,7 @@ while True:
     try:
         next_button = req_soup.select("a[title='Next']")[0]
         next_link = next_button.get("href").split()
-        url = "http://thepropertyofhate.com" + "%20".join(next_link)
+        url = "http://jolleycomics.com" + "%20".join(next_link)
     except IndexError:
         break
 
